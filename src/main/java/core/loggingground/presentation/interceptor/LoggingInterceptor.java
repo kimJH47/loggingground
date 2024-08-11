@@ -19,7 +19,6 @@ public class LoggingInterceptor implements HandlerInterceptor {
 	public boolean preHandle(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response,
 		@NonNull Object handler) throws
 		Exception {
-		MDC.put("request", request.getRequestURI());
 
 		//nginx 에서 요청 ID 제공, 제공이 안되는 환경일 시 임의로 생성
 		String requestId = request.getHeader(REQUEST_ID);
