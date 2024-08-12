@@ -2,6 +2,8 @@ package core.loggingground.presentation.interceptor;
 
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.lang.NonNull;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -14,6 +16,7 @@ public class LoggingInterceptor implements HandlerInterceptor {
 
 	private static final String REQUEST_ID = "X-REQUEST-ID";
 	private static final String URL = "url";
+	private static final Logger log = LoggerFactory.getLogger(LoggingInterceptor.class);
 
 	@Override
 	public boolean preHandle(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response,
@@ -26,9 +29,8 @@ public class LoggingInterceptor implements HandlerInterceptor {
 			requestId = UUID.randomUUID().toString();
 		}
 
-		MDC.put(REQUEST_ID, requestId);
+		MDC.put(REQUEST_ID,	 requestId);
 		MDC.put(URL, request.getRequestURI());
-
 		return true;
 	}
 
